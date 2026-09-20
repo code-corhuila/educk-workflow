@@ -1,0 +1,49 @@
+name: Centinela Autónomo 24/7 (EduTrack Cloud Guard)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '*/30 * * * *'  # Ejecución desatendida cada 30 min en la nube de GitHub
+  workflow_dispatch:        # Botón manual en GitHub web
+
+permissions:
+  pull-requests: write
+  contents: write
+  issues: write
+
+jobs:
+  audit-and-sync-24-7:
+    name: Auditoría de Calidad, Trello y WhatsApp 24/7
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Código Completo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar Dependencias
+        run: |
+          pip install requests
+
+      - name: Ejecutar Auditoría en la Nube
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY || 'a2bed52dc6fca63db4f5adb62432dc2d' }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN || 'ATTA5e8524129b0c8806bd2930ef47790da13abfe8dc2eee37ae0f209ad8b6abe6d6B69C5CC3' }}
+          TRELLO_BOARD_ID: ${{ secrets.TRELLO_BOARD_ID || '6aaef11b808b8de50ad9237e' }}
+        run: |
+          if [ -f ".github/scripts/centinela_cloud.py" ]; then
+            python .github/scripts/centinela_cloud.py
+          else
+            echo "Aviso: No se encontró script específico en .github/scripts/."
+          fi
