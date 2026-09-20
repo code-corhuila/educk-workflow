@@ -1,0 +1,163 @@
+{
+  "version": "1.0.0",
+  "last_sync": "2026-09-20T17:17:45.088524",
+  "services": {
+    "gateway": {
+      "catalog_name": "api-gateway",
+      "api_port": 8080,
+      "db_engine": "Redis 7",
+      "db_name": "redis-cache",
+      "db_port": 6379,
+      "portal_port": null,
+      "api_repo": "educk-api-gateway",
+      "db_repo": "",
+      "portal_repo": "",
+      "doc_folder": "01-api-gateway",
+      "hu": "GW-001",
+      "api_prefixes": [
+        "/api/v1"
+      ],
+      "tables": [],
+      "events": []
+    },
+    "identity": {
+      "catalog_name": "identity-service",
+      "api_port": 8081,
+      "db_engine": "PostgreSQL 16",
+      "db_name": "identity_db",
+      "db_port": 5431,
+      "portal_port": 3001,
+      "api_repo": "educk-identity-api",
+      "db_repo": "educk-identity-db",
+      "portal_repo": "educk-identity-portal",
+      "doc_folder": "03-identity",
+      "hu": "HU-003",
+      "api_prefixes": [
+        "/api/v1/auth",
+        "/api/v1/users",
+        "/api/v1/identity"
+      ],
+      "tables": [
+        "parent_child_link",
+        "refresh_tokens",
+        "schools",
+        "students",
+        "users"
+      ],
+      "events": []
+    },
+    "academic": {
+      "catalog_name": "academic",
+      "api_port": 8082,
+      "db_engine": "PostgreSQL 16",
+      "db_name": "academic_db",
+      "db_port": 5432,
+      "portal_port": 3002,
+      "api_repo": "educk-academic-api",
+      "db_repo": "educk-academic-db",
+      "portal_repo": "educk-academic-portal",
+      "doc_folder": "04-academic",
+      "hu": "HU-001",
+      "api_prefixes": [
+        "/api/v1/academic",
+        "/api/v1/grades",
+        "/api/v1/subjects"
+      ],
+      "tables": [
+        "assignments",
+        "grades",
+        "subjects"
+      ],
+      "events": [
+        "GradeCreated"
+      ]
+    },
+    "attendance": {
+      "catalog_name": "attendance",
+      "api_port": 8083,
+      "db_engine": "PostgreSQL 16",
+      "db_name": "attendance_db",
+      "db_port": 5433,
+      "portal_port": 3003,
+      "api_repo": "educk-attendance-api",
+      "db_repo": "educk-attendance-db",
+      "portal_repo": "educk-attendance-portal",
+      "doc_folder": "05-attendance",
+      "hu": "HU-005",
+      "api_prefixes": [
+        "/api/v1/attendance"
+      ],
+      "tables": [
+        "attendance_events",
+        "attendance_processed"
+      ],
+      "events": [
+        "StudentAbsent"
+      ]
+    },
+    "notifications": {
+      "catalog_name": "notifications",
+      "api_port": 8084,
+      "db_engine": "PostgreSQL 16",
+      "db_name": "notifications_db",
+      "db_port": 5434,
+      "portal_port": null,
+      "api_repo": "educk-worker",
+      "db_repo": "educk-infra",
+      "portal_repo": "",
+      "doc_folder": "06-notifications",
+      "hu": "HU-002",
+      "api_prefixes": [
+        "/api/v1/notifications"
+      ],
+      "tables": [
+        "notification_log",
+        "notification_prefs",
+        "notifications"
+      ],
+      "events": [
+        "GradeCreated",
+        "StudentAbsent"
+      ]
+    },
+    "communication": {
+      "catalog_name": "communication",
+      "api_port": 8085,
+      "db_engine": "PostgreSQL 16",
+      "db_name": "communication_db",
+      "db_port": 5435,
+      "portal_port": 3005,
+      "api_repo": "edutrack",
+      "db_repo": "educk-communication-db",
+      "portal_repo": "educk-communication-portal",
+      "doc_folder": "07-communication",
+      "hu": "HU-004",
+      "api_prefixes": [
+        "/messages",
+        "/api/v1/communication"
+      ],
+      "tables": [
+        "conversation_participants",
+        "conversations",
+        "message_reads",
+        "messages"
+      ],
+      "events": [
+        "MessageCreated"
+      ]
+    }
+  },
+  "global_rules": {
+    "max_pr_lines": 400,
+    "commit_rationale_keyword": "why:",
+    "docs_branch": "main",
+    "code_base_branch": "develop",
+    "code_feature_prefix": [
+      "feat/",
+      "fix/",
+      "chore/",
+      "docs/",
+      "promote-qa-"
+    ]
+  }
+}
