@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.pyc
+*.log
+*.pid
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+AGENTS.md
