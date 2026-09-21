@@ -1,4 +1,4 @@
-name: Cloud Guardian 24/7 (EduTrack Quality Gates)
+name: Cloud Guardian 24/7 (EduTrack Quality Gates & AI Code Reviewer)
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   audit-and-sync-24-7:
-    name: Quality Gates Audit, Trello & Notification Dispatch
+    name: AI Code Review, Quality Gates & Trello Sync
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Full Repository History
@@ -29,9 +29,9 @@ jobs:
 
       - name: Install Runtime Dependencies
         run: |
-          pip install requests
+          pip install requests google-generativeai
 
-      - name: Execute Cloud Audit & Governance Verification
+      - name: Execute Cloud Audit, AI Review & Governance Verification
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -41,6 +41,11 @@ jobs:
           TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
           TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
           TRELLO_BOARD_ID: ${{ secrets.TRELLO_BOARD_ID || '6aaef11b808b8de50ad9237e' }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
         run: |
           if [ -f ".github/scripts/centinela_cloud.py" ]; then
             python .github/scripts/centinela_cloud.py
