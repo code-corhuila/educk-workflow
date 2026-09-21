@@ -1,0 +1,38 @@
+{
+    "enabled": true,
+    "api_key": "a2bed52dc6fca63db4f5adb62432dc2d",
+    "token": "ATTA5e8524129b0c8806bd2930ef47790da13abfe8dc2eee37ae0f209ad8b6abe6d6B69C5CC3",
+    "board_id": "6aaef11b808b8de50ad9237e",
+    "board_name": "eductrack",
+    "board_url": "https://trello.com/b/vJDkQPx6/eductrack",
+    "lists": {
+        "docs": {
+            "id": "6aaf06d5d20e53ed04d9c803",
+            "name": "Documentación Pendiente"
+        },
+        "backend": {
+            "id": "6aaf06dbf860942835979e03",
+            "name": "Backend & Bases de Datos"
+        },
+        "frontend": {
+            "id": "6aaf06e126a2d747dfe4f97b",
+            "name": "Aplicación Web (Frontend)"
+        },
+        "review": {
+            "id": "6aaf17a63d79b6e2b696aa08",
+            "name": "Realizado y revisar"
+        },
+        "fix": {
+            "id": "6aaf17553a39d35efea465a1",
+            "name": "⚠️ Corregir"
+        },
+        "done": {
+            "id": "6aaf1756df3b5bcabf0307c9",
+            "name": "✅ Aprobado y Mergeado"
+        },
+        "rules": {
+            "id": "6aaf06f06720f8fbbdf7952f",
+            "name": "Recomendaciones y fucturas rectriciones"
+        }
+    }
+}
